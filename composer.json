@@ -1,0 +1,39 @@
+{
+    "name": "mattoid/flarum-ext-store-gift-box",
+    "description": "Lucky gift box goods plugin for mattoid/flarum-ext-store: weighted random draw packs with frozen odds, backpack opening animation",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "flarum/core": "^1.2.0",
+        "mattoid/flarum-ext-store": "@dev"
+    },
+    "authors": [
+        {
+            "name": "mattoid",
+            "email": "liufei@liufei.info",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mattoid\\StoreGiftBox\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Store Gift Box",
+            "category": "",
+            "icon": {
+                "name": "fas fa-gift",
+                "color": "#ffffff",
+                "backgroundColor": "#b4447c",
+                "image": "assets/logo.svg"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

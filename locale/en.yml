@@ -1,0 +1,114 @@
+mattoid-store-gift-box:
+  forum:
+    goods-name: Lucky Gift Box
+    group-name: Lucky Gift Box
+    use-open: Open Gift Box
+    opening: Opening the gift box…
+    draws-title: Box Draw History
+    draws-empty: No draw records yet
+    draws-load-more: Load more
+    draws-pack: Box
+    draws-reward: Reward
+    draws-time: Opened at
+    open-result: You won
+    open-again-tip: The reward has been delivered to your account
+    reward-money: "{amount}"
+    reward-money-converted: "{amount} ({title} already owned, auto-converted)"
+    reward-group: "Group: {names}"
+    reward-custom: "{label}"
+    money-history-draw: "Opened gift box \"{pack}\" reward"
+    money-history-convert: "Opened gift box \"{pack}\": {title} already owned, converted to money"
+    error:
+      pack-unavailable: The gift box is unavailable
+      pack-empty: The reward pool is empty, purchase is disabled
+      reward-invalid: Invalid reward configuration
+      reward-grant-fail: Failed to grant the reward, please retry later
+      snapshot-missing: Gift box data missing (incomplete purchase record), please contact the admin
+      drawn-not-found: Draw record not found
+  admin:
+    page-title: Lucky Gift Box
+    page-description: "Configure gift boxes and reward pools (weight-based: odds = weight ÷ total enabled weights). Each box can be added as a store goods (pick the exact box when adding goods)."
+    add-pack: Add Box
+    edit-pack: Edit Box
+    delete-pack: Delete Box
+    delete-pack-confirm: Delete this gift box? Boxes already in user backpacks are not affected.
+    pack-name: Box Name
+    pack-name-placeholder: e.g. Starter Pack
+    pack-icon: Box Icon
+    pack-icon-upload: Upload
+    pack-desc: Description
+    pack-status: Enabled
+    pack-sort: Sort
+    beam-color: Beam Color
+    beam-color-default: Default gold
+    beam-color-help: "Per-reward open light effect: color + type (empty color = gold, \"Off\" disables the light). Frozen at purchase."
+    fx-beam: Top Beam
+    fx-burst: Burst
+    fx-ring: Rings
+    fx-rays: Spinning Rays
+    fx-rain: Light Rain
+    fx-glow: Glow
+    fx-none: Off
+    fx-preview: Preview
+    fx-preview-beam: Top beam
+    fx-preview-burst: Burst
+    fx-preview-ring: Rings
+    fx-preview-rays: Spinning rays
+    fx-preview-rain: Light rain
+    fx-preview-glow: Glow
+    fx-preview-none: No light
+    effect-image-upload: Upload Effect Image
+    overlay-color: Overlay Color
+    overlay-color-default: Forum default
+    overlay-color-help: "Overlay color when opening this box. Each reward can override it; rewards without a color use this one; both empty = forum default overlay. Frozen at purchase."
+    open-effect: Open Effect
+    open-effect-upload: Upload GIF
+    open-effect-clear: Clear
+    open-effect-help: "Upload a GIF as this box's opening animation (replaces the built-in one). Empty = built-in animation. GIF/PNG/JPG/WebP up to 10MB. Frozen at purchase."
+    rewards: Reward Pool
+    rewards-tip: "Weight-based: odds = weight ÷ sum of all enabled weights. The pool is frozen at purchase; later changes do not affect purchased boxes."
+    add-reward: Add Reward
+    reward-type: Type
+    reward-config: Configuration
+    reward-weight: Weight
+    reward-status: Enabled
+    reward-sort: Sort
+    reward-money-amount: Amount
+    reward-goods: Store Goods
+    reward-goods-select: Select goods
+    reward-group: User Group
+    reward-custom-label: Reward Name
+    reward-custom-payload: Extra payload (JSON, optional)
+    type-money: Money
+    type-goods: Store Goods
+    type-group: User Group
+    type-custom: Custom
+    goods-form-title: Gift Box Settings
+    goods-form-tip: "The exact box is chosen in the subtype field above; keep \"consumable\" and \"usable\" enabled so the box can be opened from the backpack."
+    goods-form-no-pack: "No box selected yet (the \"Item Type\" dropdown above). Goods without a box cannot be purchased — please pick a box in the Item Type dropdown of the add-goods form."
+    store-list-pack: Box
+    pack-status-on: Enabled
+    pack-status-off: Disabled
+    stat-packs: "{count} boxes"
+    stat-rewards: "{count} rewards"
+    stat-enabled: "{count} enabled"
+    empty: No boxes yet. Click "Add Box" to get started.
+    no-rewards: No rewards configured
+    error:
+      name-required: Box name is required (max 100 chars)
+      rewards-required: At least one reward is required
+      rewards-too-many: Too many rewards (max 100)
+      reward-invalid: Invalid reward configuration
+      weight-invalid: Weight must be an integer between 1 and 1000000
+      money-amount-invalid: Invalid money amount
+      goods-not-found: Reward goods not found
+      group-invalid: Invalid group selection
+      custom-label-required: Custom reward requires a label
+      custom-payload-invalid: Extra payload must be valid JSON
+      beam-color-invalid: Invalid beam color (expected #RRGGBB)
+      beam-effect-invalid: Invalid light effect type
+      effect-type-invalid: Invalid effect file type (GIF/PNG/JPG/WebP only)
+      effect-too-large: Effect file too large (max 10MB)
+      effect-path-invalid: Invalid effect path (must be an /assets/ path)
+      pack-not-found: Box not found
+      pack-in-use: This box is used by store goods, delete the goods first

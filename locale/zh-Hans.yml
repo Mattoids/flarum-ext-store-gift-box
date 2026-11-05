@@ -1,0 +1,114 @@
+mattoid-store-gift-box:
+  forum:
+    goods-name: 幸运礼包
+    group-name: 幸运礼包
+    use-open: 开启礼包
+    opening: 礼包开启中…
+    draws-title: 开启记录
+    draws-empty: 暂无开启记录
+    draws-load-more: 加载更多
+    draws-pack: 礼包
+    draws-reward: 获得奖励
+    draws-time: 开启时间
+    open-result: 恭喜获得
+    open-again-tip: 奖励已发放至您的账户
+    reward-money: "{amount}"
+    reward-money-converted: "{amount}（{title} 已拥有，自动折算）"
+    reward-group: "用户组：{names}"
+    reward-custom: "{label}"
+    money-history-draw: "开启礼包「{pack}」获得奖励"
+    money-history-convert: "开启礼包「{pack}」，{title} 已拥有，折算为金币"
+    error:
+      pack-unavailable: 礼包不存在或已下架
+      pack-empty: 礼包奖池为空，暂不可购买
+      reward-invalid: 奖励配置无效
+      reward-grant-fail: 奖励发放失败，请稍后重试
+      snapshot-missing: 礼包数据缺失（购买记录不完整），请联系管理员
+      drawn-not-found: 未找到开启记录
+  admin:
+    page-title: 幸运礼包
+    page-description: 配置礼包及奖池（权重制：按权重随机，无需凑 100）。每个礼包可在「商店」中添加为一个商品（添加商品时选择具体礼包）。
+    add-pack: 新增礼包
+    edit-pack: 编辑礼包
+    delete-pack: 删除礼包
+    delete-pack-confirm: 确定删除该礼包吗？已发放到用户背包的礼包不受影响。
+    pack-name: 礼包名称
+    pack-name-placeholder: 如：新手大礼包
+    pack-icon: 礼包图标
+    pack-icon-upload: 上传
+    pack-desc: 礼包描述
+    pack-status: 启用
+    pack-sort: 排序
+    beam-color: 光束颜色
+    beam-color-default: 默认金色
+    beam-color-help: 每项奖励可单独设置开启光效：颜色 + 光效类型（留空颜色为默认金色，"关闭"则不开任何光效）；配置随购买冻结。
+    fx-beam: 顶部光束
+    fx-burst: 爆发粒子
+    fx-ring: 扩散光环
+    fx-rays: 旋转光芒
+    fx-rain: 光雨
+    fx-glow: 呼吸光晕
+    fx-none: 关闭光效
+    fx-preview: 预览
+    fx-preview-beam: 顶部光束
+    fx-preview-burst: 爆发粒子
+    fx-preview-ring: 扩散光环
+    fx-preview-rays: 旋转光芒
+    fx-preview-rain: 光雨
+    fx-preview-glow: 呼吸光晕
+    fx-preview-none: 无光效
+    effect-image-upload: 上传效果图片
+    overlay-color: 遮罩颜色
+    overlay-color-default: 论坛默认
+    overlay-color-help: 开启礼包时遮罩层的颜色；每项奖励可单独覆盖，奖励未设置时使用此处颜色；都留空则用论坛默认遮罩。颜色随购买冻结。
+    open-effect: 开启特效
+    open-effect-upload: 上传 GIF
+    open-effect-clear: 清除
+    open-effect-help: 上传 GIF 作为该礼包的开启动画（替代内置礼盒动画），留空使用内置动画；支持 GIF/PNG/JPG/WebP，最大 10MB。特效随购买冻结，修改不影响已购礼包。
+    rewards: 奖池配置
+    rewards-tip: 权重制：抽中概率 = 该项权重 ÷ 全部启用项权重之和。购买时奖池会冻结，后续修改不影响已购买的礼包。
+    add-reward: 添加奖励
+    reward-type: 类型
+    reward-config: 奖励配置
+    reward-weight: 权重
+    reward-status: 启用
+    reward-sort: 排序
+    reward-money-amount: 金额
+    reward-goods: 商店商品
+    reward-goods-select: 选择商品
+    reward-group: 用户组
+    reward-custom-label: 奖励名称
+    reward-custom-payload: 扩展参数（JSON，可选）
+    type-money: 金钱
+    type-goods: 商店商品
+    type-group: 用户组
+    type-custom: 自定义
+    goods-form-title: 礼包设置
+    goods-form-tip: 已在上方选择具体礼包；建议保持「一次性道具」与「允许使用」开关开启，礼包需在背包中开启。
+    goods-form-no-pack: 尚未选择具体礼包（上方「道具类型」下拉），不选择礼包的商品将无法购买，请先在商店「添加商品」弹窗的道具类型中选择礼包。
+    store-list-pack: 礼包
+    pack-status-on: 启用中
+    pack-status-off: 已停用
+    stat-packs: 共 {count} 个礼包
+    stat-rewards: 共 {count} 项奖励
+    stat-enabled: "{count} 个启用中"
+    empty: 还没有礼包，点击右上角「新增礼包」开始配置
+    no-rewards: 未配置奖励
+    error:
+      name-required: 礼包名称不能为空（100 字以内）
+      rewards-required: 请至少配置一个奖励
+      rewards-too-many: 奖池奖励过多（最多 100 项）
+      reward-invalid: 奖励配置无效
+      weight-invalid: 权重必须为 1-1000000 的整数
+      money-amount-invalid: 金钱奖励金额无效
+      goods-not-found: 奖励商品不存在
+      group-invalid: 用户组选择无效
+      custom-label-required: 自定义奖励必须填写奖励名称
+      custom-payload-invalid: 扩展参数必须是合法的 JSON
+      beam-color-invalid: 光束颜色格式无效（应为 #RRGGBB）
+      beam-effect-invalid: 光效类型无效
+      effect-type-invalid: 特效文件类型无效（仅支持 GIF/PNG/JPG/WebP）
+      effect-too-large: 特效文件过大（最大 10MB）
+      effect-path-invalid: 特效地址无效（应为站内 /assets/ 路径）
+      pack-not-found: 礼包不存在
+      pack-in-use: 该礼包已被商店商品使用，请先删除对应商品
