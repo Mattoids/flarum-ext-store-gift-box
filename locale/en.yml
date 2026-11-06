@@ -57,14 +57,17 @@ mattoid-store-gift-box:
     fx-preview-rain: Light rain
     fx-preview-glow: Glow
     fx-preview-none: No light
-    effect-image-upload: Upload Effect Image
+    effect-image-upload: Upload Effect Image / Video
     overlay-color: Overlay Color
     overlay-color-default: Forum default
+    overlay-color-inherit: Revert to box overlay
     overlay-color-help: "Overlay color when opening this box. Each reward can override it; rewards without a color use this one; both empty = forum default overlay. Frozen at purchase."
     open-effect: Open Effect
-    open-effect-upload: Upload GIF
+    open-effect-upload: Upload GIF / Video
     open-effect-clear: Clear
-    open-effect-help: "Upload a GIF as this box's opening animation (replaces the built-in one). Empty = built-in animation. GIF/PNG/JPG/WebP up to 10MB. Frozen at purchase."
+    open-effect-help: "Upload a GIF or video (MP4/WebM/MOV) as this box's opening animation (replaces the built-in one). Empty = built-in animation. Images: GIF/PNG/JPG/WebP, up to 30MB. Frozen at purchase."
+    open-effect-duration: Effect duration (seconds)
+    open-effect-duration-help: "0 = auto (open when the GIF/video finishes playing); greater than 0 plays for that many seconds before revealing. Frozen at purchase."
     rewards: Reward Pool
     rewards-tip: "Weight-based: odds = weight ÷ sum of all enabled weights. The pool is frozen at purchase; later changes do not affect purchased boxes."
     add-reward: Add Reward
@@ -107,8 +110,8 @@ mattoid-store-gift-box:
       custom-payload-invalid: Extra payload must be valid JSON
       beam-color-invalid: Invalid beam color (expected #RRGGBB)
       beam-effect-invalid: Invalid light effect type
-      effect-type-invalid: Invalid effect file type (GIF/PNG/JPG/WebP only)
-      effect-too-large: Effect file too large (max 10MB)
+      effect-type-invalid: Invalid effect file type (GIF/PNG/JPG/WebP or MP4/WebM/MOV video)
+      effect-too-large: Effect file too large (max 30MB)
       effect-path-invalid: Invalid effect path (must be an /assets/ path)
       pack-not-found: Box not found
       pack-in-use: This box is used by store goods, delete the goods first

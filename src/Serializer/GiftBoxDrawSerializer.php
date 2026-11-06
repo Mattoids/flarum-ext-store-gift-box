@@ -22,6 +22,7 @@ class GiftBoxDrawSerializer extends AbstractSerializer
             'packIcon' => $data->pack_icon,
             'beamColor' => (string) (($drawn['config']['beamColor'] ?? '')),
             'openEffect' => (string) $data->pack_open_effect,
+            'openEffectDuration' => (int) $data->pack_open_effect_duration,
             'overlayColor' => (string) (($drawn['config']['overlayColor'] ?? '') ?: $data->pack_overlay_color),
             'drawn' => $drawn,
             'drawnAt' => $data->drawn_at ? $this->formatDate($data->drawn_at) : null,

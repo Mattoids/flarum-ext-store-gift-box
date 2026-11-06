@@ -53,6 +53,7 @@ class CreateSnapshotListener
             'pack_name' => $pack->name,
             'pack_icon' => (string) $pack->icon,
             'pack_open_effect' => (string) $pack->open_effect,
+            'pack_open_effect_duration' => (int) $pack->open_effect_duration,
             'pack_overlay_color' => (string) $pack->overlay_color,
             'rewards' => $frozen,
         ]);

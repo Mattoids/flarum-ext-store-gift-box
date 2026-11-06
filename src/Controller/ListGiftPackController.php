@@ -40,6 +40,8 @@ class ListGiftPackController implements RequestHandlerInterface
                     'status' => (int) $pack->status,
                     'sort' => (int) $pack->sort,
                     'openEffect' => (string) $pack->open_effect,
+                    'openEffectDuration' => (int) $pack->open_effect_duration,
+                    'overlayColor' => (string) $pack->overlay_color,
                     'rewards' => $pack->rewards->map(function ($r) {
                         $config = $r->config;
                         if (!is_array($config)) {

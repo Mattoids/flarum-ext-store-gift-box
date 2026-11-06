@@ -8,6 +8,20 @@
     max-width: none;
     // 整体下移，视觉居中偏下
     margin-top: 200px;
+    // 禁用 scale 动画：任何非 none 的 transform 都会成为 fixed 后代（自定义遮罩层）的
+    // 包含块，导致遮罩只覆盖弹窗框区域、出现一条横带。改为淡入。
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+
+    &.in {
+      transform: none;
+      opacity: 1;
+    }
+
+    &.out {
+      opacity: 0;
+    }
   }
 
   .Modal-header {
@@ -50,13 +64,18 @@
   }
 }
 
-// 自定义遮罩层（按奖励/礼包配置的颜色）
+// 自定义遮罩层（按奖励/礼包配置的颜色）：铺满整页，直接替换默认遮罩层。
+// 透明度做进颜色本身（90% alpha，与 Flarum 默认遮罩一致），保持半透明效果。
 .GiftBoxOverlay {
   position: fixed;
   inset: 0;
-  opacity: 0.88;
   z-index: 0;
   pointer-events: none;
+}
+
+// 有自定义遮罩时隐藏 Flarum 默认遮罩层（backdrop 是 ModalManager 的相邻兄弟节点）
+.ModalManager:has(.GiftBoxOverlay) + .Modal-backdrop {
+  opacity: 0;
 }
 
 .GiftBoxStage {
@@ -69,7 +88,7 @@
   justify-content: center;
 }
 
-// 自定义开启特效（管理端上传的 GIF）
+// 自定义开启特效（管理端上传的 GIF / 视频）
 .GiftBoxEffectGif {
   max-width: 240px;
   max-height: 260px;
@@ -422,7 +441,7 @@
   display: block;
   max-width: 160px;
   max-height: 160px;
-  margin: 0 auto 14px;
+  margin: 0 auto;
   object-fit: contain;
   filter: drop-shadow(0 0 24px var(--beam-color)) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.4));
   z-index: 1;
@@ -432,7 +451,7 @@
 // 爆发光效：中心闪光 + 粒子四散
 .GiftBoxBurstFx {
   position: absolute;
-  top: 46px;
+  top: 50%;
   left: 50%;
   width: 0;
   height: 0;
@@ -465,7 +484,7 @@
 
 .GiftBoxBurstFx-core {
   position: absolute;
-  top: 46px;
+  top: 50%;
   left: 50%;
   width: 70px;
   height: 70px;
@@ -507,7 +526,7 @@
 // 扩散光环特效：多圈光环依次扩散
 .GiftBoxRingFx {
   position: absolute;
-  top: 46px;
+  top: 50%;
   left: 50%;
   z-index: 0;
   pointer-events: none;
@@ -548,7 +567,7 @@
 // 旋转光芒特效：锥形渐变光芒旋转 + 中心亮芯
 .GiftBoxRaysFx {
   position: absolute;
-  top: 46px;
+  top: 50%;
   left: 50%;
   z-index: 0;
   pointer-events: none;
@@ -599,7 +618,7 @@
 // 光雨特效：光点从上向下洒落
 .GiftBoxRainFx {
   position: absolute;
-  top: -140px;
+  top: calc(~'50% - 186px');
   left: 50%;
   width: 240px;
   height: 330px;
@@ -651,7 +670,7 @@
 // 呼吸光晕特效：柔和光球缓慢呼吸
 .GiftBoxGlowFx {
   position: absolute;
-  top: 46px;
+  top: 50%;
   left: 50%;
   width: 150px;
   height: 150px;
@@ -684,10 +703,18 @@
   animation: GiftBoxRewardIn 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both;
   text-align: center;
 
+  // 奖励视觉（效果图/奖励球）+ 全部光效的居中容器：光效一律以 50% 定位，
+  // 无论奖励球（92px）还是自定义效果图（最高 160px）都严格居中
+  .GiftBoxReward-visual {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto 14px;
+  }
+
   // 光柱：上窄下宽的梯形光柱
   .GiftBoxBeam {
     position: absolute;
-    top: -175px;
+    top: calc(~'50% - 175px');
     left: 50%;
     width: 150px;
     height: 350px;
@@ -783,7 +810,7 @@
   // 地面光斑
   .GiftBoxBeam-pool {
     position: absolute;
-    top: 58px;
+    top: calc(~'50% + 12px');
     left: 50%;
     width: 210px;
     height: 48px;
@@ -799,7 +826,7 @@
   // 奖励光环脉冲
   .GiftBoxReward-halo {
     position: absolute;
-    top: 46px;
+    top: 50%;
     left: 50%;
     width: 92px;
     height: 92px;
@@ -816,7 +843,7 @@
     position: relative;
     width: 92px;
     height: 92px;
-    margin: 0 auto 14px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;

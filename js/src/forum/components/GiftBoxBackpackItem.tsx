@@ -18,6 +18,7 @@ interface IGiftBoxBackpackItemAttrs extends ComponentAttrs {
 export default class GiftBoxBackpackItem extends Component<IGiftBoxBackpackItemAttrs> {
   private loading: boolean = false;
   private effectUrl: string = '';
+  private overlayColor: string = '';
 
   oninit(vnode: Mithril.Vnode<IGiftBoxBackpackItemAttrs, this>) {
     super.oninit(vnode);
@@ -39,6 +40,10 @@ export default class GiftBoxBackpackItem extends Component<IGiftBoxBackpackItemA
           // 预加载图片，开启时即刻播放
           const img = new Image();
           img.src = this.effectUrl;
+        }
+        if (data && data.overlayColor) {
+          // 弹窗一打开就按礼包遮罩色替换默认遮罩
+          this.overlayColor = data.overlayColor;
         }
       })
       .catch(() => {});
@@ -98,7 +103,7 @@ export default class GiftBoxBackpackItem extends Component<IGiftBoxBackpackItemA
       .then(
         () => {
           this.loading = false;
-          app.modal.show(GiftBoxUseModal, { item: this.attrs.item, effectUrl: this.effectUrl });
+          app.modal.show(GiftBoxUseModal, { item: this.attrs.item, effectUrl: this.effectUrl, overlayColor: this.overlayColor });
           if (this.attrs.onChanged) this.attrs.onChanged();
         },
         (error: any) => {

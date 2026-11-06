@@ -57,6 +57,7 @@ trait ValidatesGiftPack
             'status' => Arr::get($params, 'status', 1) ? 1 : 0,
             'sort' => (int) Arr::get($params, 'sort', 0),
             'openEffect' => $this->validateOpenEffect(Arr::get($params, 'openEffect', '')),
+            'openEffectDuration' => $this->validateOpenEffectDuration(Arr::get($params, 'openEffectDuration', 0)),
             'overlayColor' => $this->validateRewardBeamColor(Arr::get($params, 'overlayColor', '')),
             'rewards' => $cleanRewards,
         ];
@@ -152,6 +153,16 @@ trait ValidatesGiftPack
         return $path;
     }
 
+    /**
+     * 开启特效时长（秒）：0 = 自动跟随 GIF/视频实际时长
+     */
+    protected function validateOpenEffectDuration($seconds): int
+    {
+        $seconds = (int) $seconds;
+
+        return $seconds >= 0 && $seconds <= 600 ? $seconds : 0;
+    }
+
     /** 开奖光效类型白名单 */
     const BEAM_EFFECTS = ['beam', 'burst', 'ring', 'rays', 'rain', 'glow', 'none'];
 
@@ -234,6 +245,7 @@ trait ValidatesGiftPack
             'status' => (int) $pack->status,
             'sort' => (int) $pack->sort,
             'openEffect' => (string) $pack->open_effect,
+            'openEffectDuration' => (int) $pack->open_effect_duration,
             'overlayColor' => (string) $pack->overlay_color,
             'rewards' => $pack->rewards->map(function ($r) {
                 return [

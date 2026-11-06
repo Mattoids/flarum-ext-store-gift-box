@@ -40,6 +40,7 @@ class UpdateGiftPackController implements RequestHandlerInterface
             'status' => $data['status'],
             'sort' => $data['sort'],
             'open_effect' => $data['openEffect'],
+            'open_effect_duration' => $data['openEffectDuration'],
             'overlay_color' => $data['overlayColor'],
         ]);
 

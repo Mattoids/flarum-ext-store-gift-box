@@ -7,6 +7,7 @@ import extractText from 'flarum/common/utils/extractText';
 import type Mithril from 'mithril';
 import Stream from 'flarum/common/utils/Stream';
 import { GiftPackData, GiftPackRewardData } from './GiftBoxPage';
+import { isVideoEffect } from '../../common/utils/effectMedia';
 
 export interface IGiftPackEditModalAttrs extends IInternalModalAttrs {
   pack?: GiftPackData;
@@ -37,6 +38,7 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
   private status: Stream<number> = Stream(1);
   private sort: Stream<number> = Stream(0);
   private openEffect: Stream<string> = Stream('');
+  private openEffectDuration: Stream<number> = Stream(0);
   private overlayColor: Stream<string> = Stream('');
   private uploadingEffect: boolean = false;
   private rewards: RewardRow[] = [];
@@ -57,6 +59,7 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
       this.status = Stream(pack.status);
       this.sort = Stream(pack.sort);
       this.openEffect = Stream(pack.openEffect || '');
+      this.openEffectDuration = Stream(pack.openEffectDuration || 0);
       this.overlayColor = Stream(pack.overlayColor || '');
       this.rewards = pack.rewards.map((r) => this.rowFromData(r));
     } else {
@@ -93,7 +96,8 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
       status: Stream(1),
       sort: Stream(this.rewards.length),
       beamColor: Stream(''),
-      overlayColor: Stream(''),
+      // 默认继承礼包遮罩层颜色，用户可再手动改成不同效果
+      overlayColor: Stream(this.overlayColor() || ''),
       beamEffect: Stream('beam'),
       effectImage: Stream(''),
       amount: Stream(0),
@@ -186,7 +190,11 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
             <div className="GiftBoxEffectRow">
               {this.openEffect() && (
                 <span className="GiftBoxEffectPreview">
-                  <img src={this.openEffect()} alt="" />
+                  {isVideoEffect(this.openEffect()) ? (
+                    <video src={this.openEffect()} autoPlay muted playsInline loop />
+                  ) : (
+                    <img src={this.openEffect()} alt="" />
+                  )}
                 </span>
               )}
               <input className="FormControl" type="text" bidi={this.openEffect} placeholder="/assets/..." />
@@ -198,6 +206,19 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
                   {app.translator.trans('mattoid-store-gift-box.admin.open-effect-clear')}
                 </Button>
               )}
+            </div>
+            <div className="GiftBoxEffectDuration">
+              <label>{app.translator.trans('mattoid-store-gift-box.admin.open-effect-duration')}</label>
+              <input
+                className="FormControl"
+                type="number"
+                min="0"
+                max="600"
+                step="1"
+                bidi={this.openEffectDuration}
+                disabled={!this.openEffect()}
+              />
+              <span className="helpText">{app.translator.trans('mattoid-store-gift-box.admin.open-effect-duration-help')}</span>
             </div>
           </div>
 
@@ -296,6 +317,14 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
                 row.overlayColor((e.target as HTMLInputElement).value);
               }}
             />
+            {row.overlayColor() && (
+              <Button
+                className="Button Button--icon GiftBoxColorClear"
+                icon="fas fa-undo"
+                title={extractText(app.translator.trans('mattoid-store-gift-box.admin.overlay-color-inherit'))}
+                onclick={() => row.overlayColor('')}
+              />
+            )}
             {Select.component({
               options: {
                 beam: app.translator.trans('mattoid-store-gift-box.admin.fx-beam'),
@@ -354,7 +383,11 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
           )}
           <div className="GiftBoxRewardRow-fx">
             {row.effectImage() ? (
-              <img className="GiftBoxFxImgThumb" src={row.effectImage()} alt="" />
+              isVideoEffect(row.effectImage()) ? (
+                <video className="GiftBoxFxImgThumb" src={row.effectImage()} autoPlay muted playsInline loop />
+              ) : (
+                <img className="GiftBoxFxImgThumb" src={row.effectImage()} alt="" />
+              )
             ) : (
               <span className="GiftBoxFxImgThumb GiftBoxFxImgThumb--empty">
                 <i className="fas fa-image" />
@@ -508,7 +541,11 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
           )}
           {effect === 'glow' && <span className="GiftBoxFxPreview-glow" />}
           {row.effectImage() ? (
-            <img className="GiftBoxFxPreview-img" src={row.effectImage()} alt="" />
+            isVideoEffect(row.effectImage()) ? (
+              <video className="GiftBoxFxPreview-img" src={row.effectImage()} autoPlay muted playsInline loop />
+            ) : (
+              <img className="GiftBoxFxPreview-img" src={row.effectImage()} alt="" />
+            )
           ) : (
             <span className="GiftBoxFxPreview-ball">
               <i className="fas fa-gift" />
@@ -526,7 +563,7 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
     e.preventDefault();
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/gif,image/png,image/jpeg,image/webp';
+    input.accept = 'image/gif,image/png,image/jpeg,image/webp,video/mp4,video/webm,video/quicktime';
     input.style.display = 'none';
     input.addEventListener(
       'change',
@@ -557,7 +594,7 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
     e.preventDefault();
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/gif,image/png,image/jpeg,image/webp';
+    input.accept = 'image/gif,image/png,image/jpeg,image/webp,video/mp4,video/webm,video/quicktime';
     input.style.display = 'none';
     input.addEventListener(
       'change',
@@ -603,6 +640,7 @@ export default class GiftPackEditModal extends Modal<IGiftPackEditModalAttrs> {
       status: this.status(),
       sort: this.sort(),
       openEffect: this.openEffect(),
+      openEffectDuration: Number(this.openEffectDuration()) || 0,
       overlayColor: this.overlayColor(),
       rewards: this.rewards.map((r, i) => ({
         type: r.type(),

@@ -57,14 +57,17 @@ mattoid-store-gift-box:
     fx-preview-rain: 光雨
     fx-preview-glow: 呼吸光晕
     fx-preview-none: 无光效
-    effect-image-upload: 上传效果图片
+    effect-image-upload: 上传效果图片/视频
     overlay-color: 遮罩颜色
     overlay-color-default: 论坛默认
+    overlay-color-inherit: 恢复跟随礼包遮罩
     overlay-color-help: 开启礼包时遮罩层的颜色；每项奖励可单独覆盖，奖励未设置时使用此处颜色；都留空则用论坛默认遮罩。颜色随购买冻结。
     open-effect: 开启特效
-    open-effect-upload: 上传 GIF
+    open-effect-upload: 上传动图/视频
     open-effect-clear: 清除
-    open-effect-help: 上传 GIF 作为该礼包的开启动画（替代内置礼盒动画），留空使用内置动画；支持 GIF/PNG/JPG/WebP，最大 10MB。特效随购买冻结，修改不影响已购礼包。
+    open-effect-help: 上传 GIF 或视频（MP4/WebM/MOV）作为该礼包的开启动画（替代内置礼盒动画），留空使用内置动画；图片支持 GIF/PNG/JPG/WebP，最大 30MB。特效随购买冻结，修改不影响已购礼包。
+    open-effect-duration: 特效时长（秒）
+    open-effect-duration-help: 0 = 自动（按 GIF/视频实际播放时长开奖）；大于 0 则按设定秒数播放后开奖，随购买冻结。
     rewards: 奖池配置
     rewards-tip: 权重制：抽中概率 = 该项权重 ÷ 全部启用项权重之和。购买时奖池会冻结，后续修改不影响已购买的礼包。
     add-reward: 添加奖励
@@ -107,8 +110,8 @@ mattoid-store-gift-box:
       custom-payload-invalid: 扩展参数必须是合法的 JSON
       beam-color-invalid: 光束颜色格式无效（应为 #RRGGBB）
       beam-effect-invalid: 光效类型无效
-      effect-type-invalid: 特效文件类型无效（仅支持 GIF/PNG/JPG/WebP）
-      effect-too-large: 特效文件过大（最大 10MB）
+      effect-type-invalid: 特效文件类型无效（支持 GIF/PNG/JPG/WebP 或 MP4/WebM/MOV 视频）
+      effect-too-large: 特效文件过大（最大 30MB）
       effect-path-invalid: 特效地址无效（应为站内 /assets/ 路径）
       pack-not-found: 礼包不存在
       pack-in-use: 该礼包已被商店商品使用，请先删除对应商品

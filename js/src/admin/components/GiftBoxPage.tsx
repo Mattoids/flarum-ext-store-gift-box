@@ -17,6 +17,7 @@ export interface GiftPackData {
   status: number;
   sort: number;
   openEffect?: string;
+  openEffectDuration?: number;
   overlayColor?: string;
   rewards: GiftPackRewardData[];
 }

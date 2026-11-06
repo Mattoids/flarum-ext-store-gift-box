@@ -32,6 +32,8 @@ class PackInfoController implements RequestHandlerInterface
                 'name' => $pack->name,
                 'icon' => $pack->icon,
                 'openEffect' => (string) $pack->open_effect,
+                // 礼包默认遮罩色：弹窗一打开就按此色替换默认遮罩（奖励级覆盖需等开奖结果）
+                'overlayColor' => (string) $pack->overlay_color,
             ] : null,
         ]);
     }

@@ -51,6 +51,7 @@ class DrawnResultController implements RequestHandlerInterface
                 'packIcon' => $snapshot->pack_icon,
                 'beamColor' => (string) ($drawn['config']['beamColor'] ?? ''),
                 'openEffect' => (string) $snapshot->pack_open_effect,
+                'openEffectDuration' => (int) $snapshot->pack_open_effect_duration,
                 // 遮罩色：奖励级优先，其次礼包默认
                 'overlayColor' => (string) ($drawn['config']['overlayColor'] ?? $snapshot->pack_overlay_color),
                 'drawn' => $snapshot->drawn_reward,

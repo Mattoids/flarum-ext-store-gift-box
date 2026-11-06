@@ -8,7 +8,7 @@ class GiftPack extends AbstractModel
 {
     protected $table = 'store_gift_pack';
 
-    protected $fillable = ['name', 'icon', 'desc', 'status', 'sort', 'open_effect', 'overlay_color'];
+    protected $fillable = ['name', 'icon', 'desc', 'status', 'sort', 'open_effect', 'open_effect_duration', 'overlay_color'];
 
     public $timestamps = true;
 

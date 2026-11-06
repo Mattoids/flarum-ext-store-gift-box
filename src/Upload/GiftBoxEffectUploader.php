@@ -9,7 +9,7 @@ use Psr\Http\Message\UploadedFileInterface;
 use Symfony\Component\Mime\MimeTypes;
 
 /**
- * 开启特效（GIF）上传器：写入 mattoid-gift-box 磁盘（public/assets/mattoid/giftBox）
+ * 开启特效（GIF / 视频）上传器：写入 mattoid-gift-box 磁盘（public/assets/mattoid/giftBox）
  */
 class GiftBoxEffectUploader
 {
@@ -19,10 +19,13 @@ class GiftBoxEffectUploader
         'image/png' => 'png',
         'image/jpeg' => 'jpg',
         'image/webp' => 'webp',
+        'video/mp4' => 'mp4',
+        'video/webm' => 'webm',
+        'video/quicktime' => 'mov',
     ];
 
-    /** 大小上限 10MB */
-    const MAX_SIZE = 10485760;
+    /** 大小上限 30MB */
+    const MAX_SIZE = 31457280;
 
     protected $disk;
 
